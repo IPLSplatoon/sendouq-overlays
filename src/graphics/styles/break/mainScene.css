@@ -1,0 +1,82 @@
+main-scene > .stretch-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    white-space: nowrap;
+    gap: 20px;
+}
+
+main-scene > .stretch-wrapper > .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 30px 30px 30px;
+    text-align: center;
+    width: calc(100% - 60px);
+}
+
+main-scene > .stretch-wrapper > .title > .icon {
+    height: 238px;
+}
+
+main-scene > .stretch-wrapper > .title > .text {
+    font-size: 46px;
+    font-weight: 700;
+    line-height: 1.1em;
+}
+
+main-scene > .stretch-wrapper > .break-text {
+    padding: 20px 30px;
+    font-size: 32px;
+    width: calc(100% - 60px);
+}
+
+main-scene > .stretch-wrapper > .next-wrapper {
+    display: grid;
+    grid-template-columns: 118px calc(100% - 118px - 4px);
+    gap: 4px;
+    font-size: 32px;
+    overflow: hidden;
+}
+
+main-scene > .stretch-wrapper > .next-wrapper > *:nth-child(1) {
+    border-radius: var(--corner) 0 0 var(--corner);
+}
+
+main-scene > .stretch-wrapper > .next-wrapper > *:nth-child(2) {
+    border-radius: 0 var(--corner) var(--corner) 0;
+}
+
+main-scene > .stretch-wrapper > .next-wrapper > .next{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 700;
+}
+
+main-scene > .stretch-wrapper > .next-wrapper > .match {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+main-scene > .stretch-wrapper > .next-wrapper > .match > .name{
+    color: var(--blue);
+    font-weight: 500;
+    line-height: 1.1em;
+}
+
+main-scene > .stretch-wrapper > .next-wrapper > .match > .teams{
+    font-weight: 700;
+    line-height: 1.1em;
+}
+
+main-scene > .ipl-streamed {
+    opacity: .9;
+    width: 320px;
+    height: auto;
+    margin-top: 20px;
+}

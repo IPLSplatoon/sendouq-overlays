@@ -1,0 +1,49 @@
+{
+  "name": "sendouq-overlays",
+  "version": "1.0.0",
+  "description": "Broadcast overlays for the SendouQ season finale events.",
+  "homepage": "",
+  "type": "module",
+  "compatibleDashboardVersion": "^4.5.0",
+  "compatibleGameVersions": [
+    "SPLATOON_3"
+  ],
+  "author": {
+    "name": ".jpg",
+    "email": "jpg@iplabs.ink",
+    "url": "jpg.contact"
+  },
+  "files": [
+    "graphics"
+  ],
+  "keywords": [
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "compatibleRange": "^1.8.1",
+    "graphics": [
+      {
+        "file": "break.html",
+        "width": 1920,
+        "height": 1080
+      }
+    ]
+  },
+  "repository": "https://github.com/nodecg/nodecg.git",
+  "private": true,
+  "dependencies": {
+    "fitted-text": "^2.0.5",
+    "gsap": "^3.12.2",
+    "lit": "^3.0.2",
+    "lit-element": "^4.0.1",
+    "vite-plugin-nodecg": "github:inkfarer/vite-plugin-nodecg"
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "start": "cd ../.. && npm run start"
+  },
+  "devDependencies": {
+    "@nodecg/types": "^2.1.11"
+  }
+}

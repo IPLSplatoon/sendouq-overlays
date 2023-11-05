@@ -1,0 +1,41 @@
+top-bar {
+    position: absolute;
+    top: 0;
+    width: calc(1920px - 44px);
+    height: calc(80px - 1.5px);
+    border-bottom: 1.5px solid #ffffff1a;
+    background: transparent;
+    backdrop-filter: brightness(.75);
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+top-bar > .left {
+    display: flex;
+    align-items: center;
+}
+
+top-bar > .left > .text {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+top-bar > .left >  img.text {
+    height: 64px;
+    width: auto;
+}
+
+top-bar > .left >  .divider {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 20px;
+    transform: translateY(-.06em);
+}
+
+top-bar > .right {
+    display: flex;
+    align-items: center;
+}

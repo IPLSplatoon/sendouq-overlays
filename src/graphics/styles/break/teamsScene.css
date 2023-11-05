@@ -1,0 +1,92 @@
+teams-scene {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    justify-content: center;
+    gap: 40px;
+}
+
+teams-scene > .teams-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+teams-scene > .teams-wrapper > .team-card {
+    width: 530px;
+    height: 600px;
+}
+
+teams-scene > .teams-wrapper > .team-card > .name {
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    height: 106px;
+    font-size: 56px;
+    font-weight: 700;
+    border-bottom: 4px solid var(--bg);
+}
+
+teams-scene > .teams-wrapper > .team-card > .players {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    font-size: 36px;
+    color: var(--blue);
+    height: calc(100% - 60px - 110px);
+}
+
+teams-scene > .teams-wrapper > .team-card.left > .name {
+    justify-content: flex-end;
+}
+
+teams-scene > .teams-wrapper > .team-card.left > .players {
+    align-items: flex-end;
+}
+
+teams-scene > .teams-wrapper > .vs {
+    font-weight: 700;
+    font-size: 66px;
+    padding: 10px 20px;
+}
+
+teams-scene > .info-wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+teams-scene > .info-wrapper > .score {
+    width: 100px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    font-weight: 700;
+    margin: 0 4px;
+}
+
+teams-scene > .info-wrapper > .score.left {
+    border-radius: var(--corner) 0 0 var(--corner);
+}
+
+teams-scene > .info-wrapper > .score.right {
+    border-radius: 0 var(--corner) var(--corner) 0;
+}
+
+teams-scene > .info-wrapper > .next-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--blue);
+    border-radius: 0;
+    font-size: 36px;
+    padding: 0 20px;
+}
+
+teams-scene > .info-wrapper > .next-wrapper > .next {
+    color: var(--white);
+    font-weight: 700;
+}

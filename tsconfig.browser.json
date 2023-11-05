@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "noImplicitAny": true,
+        "module": "esnext",
+        "target": "es6",
+        "lib": [
+            "esnext",
+            "dom",
+            "dom.iterable"
+        ],
+        "types": [
+            "webpack-env",
+            "jest",
+            "@nodecg/types/augment-window"
+        ],
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "moduleResolution": "Node",
+        "baseUrl": ".",
+        "paths": {
+            "schemas": [
+                "../ipl-overlay-controls/src/types/schemas/index"
+            ]
+        }
+    }
+}

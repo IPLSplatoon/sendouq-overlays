@@ -1,0 +1,45 @@
+bottom-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 80px;
+    width: 1920px;
+    background: var(--container-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+bottom-bar > .card {
+    background: #ffc6de52;
+    width: 450px;
+    height: 66px;
+    border-radius: var(--corner);
+    color: #FFC6DE;
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+}
+
+bottom-bar > .card > .icon {
+    height: 48px;
+    margin: 0 25px;
+}
+
+bottom-bar > .card > .text-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+bottom-bar > .card > .text-wrapper > .title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1em;
+    margin-bottom: .1em;
+}
+
+bottom-bar > .card > .text-wrapper > .subtitle {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1em;
+}

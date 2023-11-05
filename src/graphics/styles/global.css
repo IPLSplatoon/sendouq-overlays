@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body{
+    padding: 0;
+    margin: 0;
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 500;
+
+    --container-blue: #a98aff1a;
+    --container-pink: #ffc6de36;
+    --white: #E1DEDE;
+    --blue: #ACACD2;
+    --bg: #02011E;
+    --corner: 16px;
+
+    color: var(--white);
+}
+
+nodecg-graphic {
+    display: block;
+    width: 1920px;
+    height: 1080px;
+}
+
+.container {
+    border-radius: var(--corner);
+    overflow: hidden;
+    background: var(--container-blue);
+}
+
+.container.pink {
+    background: var(--container-pink);
+}
