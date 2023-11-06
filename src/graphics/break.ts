@@ -1,9 +1,7 @@
-//packages
 import { LitElement, TemplateResult, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import 'fitted-text';
-
-import {initLinks, initMainScene, initNextMatch, initSceneSwitcher} from './break/exports';
+import {initCasters, initLinks, initMainScene, initMusic, initNextMatch, initSceneSwitcher, initScore, initStages, initTeams, initTopBar} from './break/exports';
 
 //static assets
 import sendouQLogo from './assets/sendouqlogo.png'; 
@@ -20,7 +18,7 @@ import './styles/break/topBar.css';
 import './styles/break/bottomBar.css';
 import './styles/break/mainScene.css';
 import './styles/break/teamsScene.css';
-
+import './styles/break/stageScene.css';
 
 @customElement('nodecg-graphic')
 export class Break extends LitElement {
@@ -31,6 +29,7 @@ export class Break extends LitElement {
             ${this.getBottomBar()}
             ${this.getMainScene()}
             ${this.getTeamsScene()}  
+            ${this.getStageScene()}
         `;
     }
 
@@ -39,6 +38,12 @@ export class Break extends LitElement {
         initNextMatch();
         initMainScene();
         initSceneSwitcher();
+        initTopBar();
+        initStages();
+        initScore();
+        initTeams();
+        initCasters();
+        initMusic();
     }
 
     createRenderRoot(): Break {
@@ -53,9 +58,9 @@ export class Break extends LitElement {
                 <div class="divider">/</div>
                 <img class="text" src=${sendouQLogo}>
                 <div class="divider dynamic">/</div>
-                <div class="text dynamic" id="top-bar-stage"></div>
+                <div class="text dynamic" id="top-bar-stage">Grand Finals</div>
                 <div class="divider dynamic">/</div>
-                <div class="text dynamic" id="top-bar-game"></div>
+                <div class="text dynamic" id="top-bar-game">Game 1</div>
             </div>
             <img class="right" src=${topBarIcons}>
         </top-bar>
@@ -74,11 +79,11 @@ export class Break extends LitElement {
 
     private getBottomBarCard(iconSrc: string, id: string): TemplateResult {
         return html`
-        <div class="card">
+        <div class="card" id="bottom-card-${id}">
             <img class="icon" src="${iconSrc}">
             <div class="text-wrapper">
-                <fitted-text class="title" max-width="325" id="${id}-title"></fitted-text>
-                <fitted-text class="subtitle" max-width="325" id="${id}-subtitle"></fitted-text>
+                <fitted-text class="title" max-width="350" id="${id}-title"></fitted-text>
+                <fitted-text class="subtitle" max-width="350" id="${id}-subtitle"></fitted-text>
             </div>
         </div>
         `
@@ -100,6 +105,7 @@ export class Break extends LitElement {
                     <div class="container match">
                         <fitted-text class="name" max-width="800" id="next-match-name"></fitted-text>
                         <fitted-text class="teams" max-width="800" id="next-match-teams"></fitted-text>
+                        <div class="stage-wrapper" id="next-match-stages"></div>
                     </div>
                 </div>
             </div>
@@ -116,12 +122,10 @@ export class Break extends LitElement {
                 <div class="vs container pink scene-switch">VS</div>
                 ${this.getTeamCard("right")}
             </div>
-            <div class="info-wrapper">
-                <div class="score left container pink scene-switch">0</div>
-                <div class="next-wrapper container scene-switch">
-                    <span class='next'>Next:</span>
-                </div>
-                <div class="score right container pink scene-switch">0</div>
+            <div class="info-wrapper scene-switch">
+                <div class="score left container pink" id="teams-score-left">0</div>
+                <div class="next-wrapper container" id="next-stage"></div>
+                <div class="score right container pink" id="teams-score-right">0</div>
             </div>
         </teams-scene>
         `
@@ -129,20 +133,34 @@ export class Break extends LitElement {
 
     private getTeamCard(side: "left" | "right"): TemplateResult {
         return html`
-        <div class="team-card ${side} container scene-switch">
+        <div class="team-card ${side} container scene-switch" id="team-card-${side}">
             <div class="name">
                 <fitted-text id="team-${side}-name" max-width="476" text="Team Name"></fitted-text>
             </div>
-            <div class="players" id="team-${side}-players">
-                <fitted-text max-width="476" text="player 1"></fitted-text>
-                <fitted-text max-width="476" text="player 2"></fitted-text>
-                <fitted-text max-width="476" text="player 3"></fitted-text>
-                <fitted-text max-width="476" text="player 4"></fitted-text>
-                <fitted-text max-width="476" text="player 5"></fitted-text>
-                <fitted-text max-width="476" text="player 6"></fitted-text>
-                <fitted-text max-width="476" text="player 7"></fitted-text>
-                <fitted-text max-width="476" text="player 8"></fitted-text>
-            </div>
+            <div class="players" id="team-${side}-players"></div>
         `;
+    }
+
+    private getStageScene(): TemplateResult {
+        return html`
+        <stage-scene class="scene">
+            <div class="teams-wrapper">
+                ${this.getStageTeamCard("left")}
+                ${this.getStageTeamCard("right")}
+            </div>
+            <div class="stages-wrapper" id="stages-wrapper"></div>
+        </stage-scene>
+        `;
+    }
+
+    private getStageTeamCard(side: "left" | "right"): TemplateResult {
+        return html`
+        <div class="team-card ${side} scene-switch">
+            <div class="name container">
+                <fitted-text align="${side}" id="stage-team-${side}-name" max-width="314" text="Team Name"></fitted-text>
+            </div>
+            <div class="score container pink" id="stage-team-${side}-score">0</div>
+        </div>
+        `
     }
 }

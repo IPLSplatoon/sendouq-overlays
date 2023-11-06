@@ -36,7 +36,9 @@
     "gsap": "^3.12.2",
     "lit": "^3.0.2",
     "lit-element": "^4.0.1",
-    "vite-plugin-nodecg": "github:inkfarer/vite-plugin-nodecg"
+    "lodash": "^4.17.21",
+    "vite-plugin-nodecg": "github:inkfarer/vite-plugin-nodecg",
+    "vite-tsconfig-paths": "^4.2.1"
   },
   "scripts": {
     "build": "vite build",
@@ -44,6 +46,7 @@
     "start": "cd ../.. && npm run start"
   },
   "devDependencies": {
-    "@nodecg/types": "^2.1.11"
+    "@nodecg/types": "^2.1.11",
+    "@types/lodash": "^4.14.200"
   }
 }

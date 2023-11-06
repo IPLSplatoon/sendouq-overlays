@@ -1,4 +1,4 @@
-import { MusicShown, NowPlaying, Casters, ActiveRound, PredictionStore, ActiveBreakScene, MainFlavorText, NextRoundStartTime, ScoreboardData, NextRound, AssetPaths, TournamentData } from '../../../../ipl-overlay-controls/src/types/schemas'; //questionable
+import { MusicShown, NowPlaying, Casters, ActiveRound, PredictionStore, ActiveBreakScene, MainFlavorText, NextRoundStartTime, ScoreboardData, NextRound, AssetPaths, TournamentData } from 'schemas';
 
 const DASHBOARD_BUNDLE_NAME = 'ipl-overlay-controls';
 

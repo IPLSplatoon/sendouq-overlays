@@ -4,6 +4,11 @@
             "vite/client",
             "@nodecg/types/augment-window"
         ],
+        "paths": {
+            "schemas": [
+                "../ipl-overlay-controls/src/types/schemas/index"
+            ]
+        },
         "isolatedModules": true
-    }
+    },
 }

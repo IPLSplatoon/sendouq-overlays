@@ -1,7 +1,7 @@
 import { mainFlavorText, tournamentData } from "../helpers/replicants";
 import { gsap } from "gsap";
 import { TextPlugin } from 'gsap/TextPlugin';
-import { TournamentData } from "../../../../ipl-overlay-controls/src/types/schemas";
+import { TournamentData } from "schemas";
 gsap.registerPlugin(TextPlugin);
 
 const flavorTextTL: gsap.core.Timeline = gsap.timeline();
@@ -39,6 +39,7 @@ export function initMainScene(){
 }
 
 function changeTourneyName(text: string, textElement: HTMLElement, wrapper: HTMLElement) {
+    text = text.replace("SendouQ", "SendouQ<br>");
     titleTL.set(wrapper, {
         width: wrapper.offsetWidth - 60,
     })

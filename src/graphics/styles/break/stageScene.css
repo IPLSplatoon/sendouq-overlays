@@ -1,0 +1,113 @@
+stage-scene > .teams-wrapper {
+    display: flex;
+    gap: 65px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+stage-scene > .teams-wrapper > .team-card {
+    display: flex;
+    align-items: center;
+    height: 75px;
+    gap: 4px;
+}
+
+stage-scene > .teams-wrapper > .team-card.right{
+    flex-direction: row-reverse;
+}
+
+stage-scene > .teams-wrapper > .team-card > .name {
+    font-weight: 600;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    width: calc(358px - 40px);
+    padding: 0 20px;
+    height: 100%;
+}
+
+stage-scene > .teams-wrapper > .team-card.right > .name {
+    border-radius: 0 var(--corner) var(--corner) 0;
+    justify-content: end;
+}
+
+stage-scene > .teams-wrapper > .team-card.left > .name {
+    border-radius: var(--corner) 0 0 var(--corner);
+    justify-content: start;
+}
+
+stage-scene > .teams-wrapper > .team-card > .score {
+    font-weight: 700;
+    font-size: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100%;
+}
+
+stage-scene > .teams-wrapper > .team-card.right > .score {
+    border-radius: var(--corner) 0 0 var(--corner);
+}
+
+stage-scene > .teams-wrapper > .team-card.left > .score {
+    border-radius: 0 var(--corner) var(--corner) 0;
+}
+
+stage-scene > .stages-wrapper {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+stage-scene > .stages-wrapper > .stage {
+    --width: 330px;
+    --background: #00000000;
+    width: calc(var(--width) - 20px);
+    height: calc(600px - 10px);
+    padding: 10px;
+    border-radius: var(--corner);
+    display: flex;
+    justify-content: start;
+    align-items: end;
+    position: relative;
+    overflow: hidden;
+    background-size: auto 610px;
+    background-position: 50%;
+    background-image: linear-gradient(180deg, #1310354d 0%, #1310354d 53.72%, #131035 100%), var(--background);
+}
+
+stage-scene > .stages-wrapper > .stage.finished {
+    background-image: linear-gradient(180deg, #131035cc 0%, #131035cc 53.72%, #131035 100%), var(--background);
+}
+
+stage-scene > .stages-wrapper > .stage > .info-wrapper {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    line-height: 1.05em;
+    height: 60px;
+}
+
+stage-scene > .stages-wrapper > .stage > .info-wrapper > .icon {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+stage-scene > .stages-wrapper > .stage > .winner{
+    position: absolute;
+    top: 0;
+    left: 0;    
+    width: 100%;
+    height: 100%;
+    font-size: 40px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-wrap: break-word;
+    text-align: center;
+}
