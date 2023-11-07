@@ -3,6 +3,7 @@ import { ActiveBreakScene } from "schemas";
 import { gsap } from "gsap";
 
 const sceneSwitcherTL = gsap.timeline();
+const loadingTL = gsap.timeline();
 
 export function initSceneSwitcher() {
     NodeCG.waitForReplicants(activeBreakScene).then(() => {
@@ -19,8 +20,7 @@ export function initSceneSwitcher() {
                 stages: {
                     wrapper: document.querySelector("stage-scene") as HTMLElement,
                     sceneSwitch: document.querySelector("stage-scene").querySelectorAll(".scene-switch") as NodeListOf<HTMLElement>,
-                },
-                loadingBar: document.getElementById("loading-bar") as HTMLElement,
+                }
             }
 
             if (oldVal === undefined) {
@@ -58,19 +58,19 @@ export function initSceneSwitcher() {
             } else if (newVal === "stages") {
                 stagesIn(e);
             }
-
-            animateLoadingBar(e.loadingBar);
         });
     });
 }   
 
 function mainOut(e) {
+    animateLoadingBarPT1();
     sceneSwitcherTL.to(e.main.sceneSwitch, {
         opacity: 0,
         duration: .75,
         x: -150,
         stagger: .075,
-        ease: "power2.in"
+        onStart: animateLoadingBarPT1,
+        ease: "power2.in",
     })
     .set(e.main.wrapper, {
         display: "none",
@@ -89,6 +89,7 @@ function mainIn(e) {
         duration: 1,
         x: 0,
         stagger: .075,
+        onStart: animateLoadingBarPT2,
         ease: "power2.out"
     });
 }
@@ -105,6 +106,7 @@ function teamsOut(e, dir: "left" | "right") {
             each: .075,
             from: stagger
         },
+        onStart: animateLoadingBarPT1,
         ease: "power2.in"
     })
     .set(e.teams.wrapper, {
@@ -133,6 +135,7 @@ function teamsIn(e, dir: "left" | "right") {
             each: .075,
             from: stagger
         },
+        onStart: animateLoadingBarPT2,
         ease: "power2.out"
     });
 }
@@ -147,6 +150,7 @@ function stagesOut(e) {
             from: "end"
         
         },
+        onStart: animateLoadingBarPT1,
         ease: "power2.in"
     })
     .set(e.stages.wrapper, {
@@ -166,13 +170,14 @@ function stagesIn(e) {
         duration: 1,
         x: 0,
         stagger: .075,
+        onStart: animateLoadingBarPT2,
         ease: "power2.out"
     });
 }
 
-function animateLoadingBar(e){
-    const tl = gsap.timeline();
-    tl.fromTo(e, {
+function animateLoadingBarPT1(){
+    loadingTL.clear();
+    loadingTL.fromTo("#loading-bar", {
         opacity: 1,
         width: 0,
     }, {
@@ -180,12 +185,21 @@ function animateLoadingBar(e){
         duration: .6,
         ease: "power3.inOut",
     })
-    .to(e, {
+    .to("#loading-bar", {
         width: 1920,
-        duration: .5,
+        duration: 5,
+        ease: "linear"
+    });
+}
+
+function animateLoadingBarPT2() {
+    loadingTL.clear();
+    loadingTL.to("#loading-bar", {
+        width: 1920,
+        duration: .6,
         ease: "power3.out",
-    }, "+=.25")
-    .to(e, {
+    })
+    .to("#loading-bar", {
         opacity: 0,
         duration: .25,
     }, "+=.25");
