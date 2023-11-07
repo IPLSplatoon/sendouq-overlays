@@ -19,7 +19,8 @@ export function initSceneSwitcher() {
                 stages: {
                     wrapper: document.querySelector("stage-scene") as HTMLElement,
                     sceneSwitch: document.querySelector("stage-scene").querySelectorAll(".scene-switch") as NodeListOf<HTMLElement>,
-                }
+                },
+                loadingBar: document.getElementById("loading-bar") as HTMLElement,
             }
 
             if (oldVal === undefined) {
@@ -57,6 +58,8 @@ export function initSceneSwitcher() {
             } else if (newVal === "stages") {
                 stagesIn(e);
             }
+
+            animateLoadingBar(e.loadingBar);
         });
     });
 }   
@@ -165,4 +168,25 @@ function stagesIn(e) {
         stagger: .075,
         ease: "power2.out"
     });
+}
+
+function animateLoadingBar(e){
+    const tl = gsap.timeline();
+    tl.fromTo(e, {
+        opacity: 1,
+        width: 0,
+    }, {
+        width: 1920*.2,
+        duration: .6,
+        ease: "power3.inOut",
+    })
+    .to(e, {
+        width: 1920,
+        duration: .5,
+        ease: "power3.out",
+    }, "+=.25")
+    .to(e, {
+        opacity: 0,
+        duration: .25,
+    }, "+=.25");
 }

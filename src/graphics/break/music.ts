@@ -47,11 +47,11 @@ function showMusic(element: HTMLElement) {
         width: 450,
         marginLeft: 10,
         marginRight: 10,
-        duration: .5,
+        duration: .75,
         ease: "power2.inOut",   
     })
     .to(element, {
-        opacity: 1,
+        y: 0,
         duration: .5,
         ease: "power2.out",
     });
@@ -60,7 +60,7 @@ function showMusic(element: HTMLElement) {
 function hideMusic(element: HTMLElement) {
     const tl = gsap.timeline();
     tl.to(element, {
-        opacity: 0,
+        y: 80,
         duration: .5,
         ease: "power2.in",
     })
@@ -68,7 +68,7 @@ function hideMusic(element: HTMLElement) {
         width: 0,
         marginLeft: 0,
         marginRight: 0,
-        duration: .5,
+        duration: .75,
         ease: "power2.inOut",
     });
 }

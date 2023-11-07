@@ -14,3 +14,13 @@ nodecg-graphic {
     justify-content: center;
     overflow: hidden;
 }
+
+#loading-bar { 
+    position: absolute;
+    top: 79px;
+    left: 0;
+    width: 1920px;
+    height: 2.5px;
+    background: #ffc6de;
+    opacity: 0;
+}

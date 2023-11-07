@@ -183,7 +183,7 @@ function setNextStageTeamsScene(element: HTMLElement, games: ActiveRound["games"
 function changeSingleStage(element: HTMLElement, stage: string, mode: string, teamAName: string, teamBName: string, winner: string | null) {   
     const tl = gsap.timeline();
     tl.to(element, {
-        height: 200,
+        height: 300,
         duration: .5,  
         opacity: 0,
         ease: "power2.in",
