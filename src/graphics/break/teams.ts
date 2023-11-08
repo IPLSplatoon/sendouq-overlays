@@ -1,6 +1,7 @@
 import { activeRound } from "../helpers/replicants";
 import { ActiveRound, Player } from "schemas";
 import { gsap } from "gsap";
+import { limitString } from "../helpers/string";
 
 export function initTeams() {
     const e = {
@@ -43,10 +44,10 @@ function setTeams(e, teamA: ActiveRound["teamA"], teamB: ActiveRound["teamB"]) {
         marginTop: 200,
         ease: "power2.in",
         onComplete: function() {
-            e.a.name.text = teamA.name;
-            e.b.name.text = teamB.name;
-            e.a.stageName.text = teamA.name;
-            e.b.stageName.text = teamB.name;
+            e.a.name.text = limitString(teamA.name);
+            e.b.name.text = limitString(teamB.name);
+            e.a.stageName.text = limitString(teamA.name, 22);
+            e.b.stageName.text = limitString(teamB.name, 22);
 
             e.a.playersWrapper.innerHTML = getPlayersHTML(teamA.players);
             e.b.playersWrapper.innerHTML = getPlayersHTML(teamB.players);

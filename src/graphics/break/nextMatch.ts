@@ -7,6 +7,7 @@ gsap.registerPlugin(TextPlugin);
 
 import blank from '../assets/blank.png';
 import { getModeIcon } from "../helpers/modeIcon";
+import { limitString } from "../helpers/string";
 
 const visibleTL = gsap.timeline();
 
@@ -61,7 +62,7 @@ function changeNextMatch(round: NextRound, e, changeWidth: boolean) {
         ease: "power2.in",
         onComplete: function() {
             e.name.text = round.round.name;
-            e.teams.text = `${round.teamA.name} VS ${round.teamB.name}`;
+            e.teams.text = `${limitString(round.teamA.name)} VS ${limitString(round.teamB.name)}`;
             setNextStages(round.games, e.stageWrapper);
         }
     })

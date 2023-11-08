@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { activeRound, tournamentData, scoreboardData } from "../helpers/replicants";
 import { ActiveRound, TournamentData, ScoreboardData } from "schemas";
+import { limitString } from "../helpers/string";
 
 const scoreTl = gsap.timeline();
 
@@ -30,8 +31,8 @@ export function initScoreboard() {
             changeScore(e.teamB.score, newVal.teamB.score);
 
             if (oldVal === undefined) {
-                changeFittedText(e.teamA.name, newVal.teamA.name);    
-                changeFittedText(e.teamB.name, newVal.teamB.name);
+                changeFittedText(e.teamA.name, limitString(newVal.teamA.name, 25));    
+                changeFittedText(e.teamB.name, limitString(newVal.teamB.name, 25));
                 changeColor(e.teamA.wrapper, newVal.teamA.color);
                 changeColor(e.teamB.wrapper, newVal.teamB.color);
                 changeFittedText(e.info.bottom, newVal.match.name); 
@@ -39,10 +40,10 @@ export function initScoreboard() {
             }
 
             if (newVal.teamA.name !== oldVal.teamA.name) {
-                changeFittedText(e.teamA.name, newVal.teamA.name);
+                changeFittedText(e.teamA.name, limitString(newVal.teamA.name, 25));
             }   
             if (newVal.teamB.name !== oldVal.teamB.name) {
-                changeFittedText(e.teamB.name, newVal.teamB.name);
+                changeFittedText(e.teamB.name, limitString(newVal.teamB.name, 25));
             }
 
             if (newVal.teamA.color !== oldVal.teamA.color) {
