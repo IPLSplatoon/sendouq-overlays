@@ -5,12 +5,8 @@ import { NextRound } from "schemas";
 import * as _ from 'lodash';
 gsap.registerPlugin(TextPlugin);
 
-import sz from '../assets/SZ.avif';
-import tc from '../assets/TC.avif';
-import rm from '../assets/RM.avif';
-import cb from '../assets/CB.avif';
-import counter from '../assets/Counter.avif';
 import blank from '../assets/blank.png';
+import { getModeIcon } from "../helpers/modeIcon";
 
 const visibleTL = gsap.timeline();
 
@@ -99,24 +95,7 @@ function setNextStages(stages: NextRound["games"], wrapper: HTMLElement) {
 }
 
 function getStageElem(stage: string, mode: string): string {
-    let modeAsset: string;
-    switch (mode) {  
-        case "Splat Zones":
-            modeAsset = sz;
-            break;
-        case "Tower Control":
-            modeAsset = tc;
-            break;
-        case "Rainmaker":
-            modeAsset = rm;
-            break;
-        case "Clam Blitz":
-            modeAsset = cb;
-            break;
-        default:
-            modeAsset = counter;
-            break;
-    }
+    let modeAsset = getModeIcon(mode);
 
     let stageImage = assetPaths.value.stageImages[stage];
     if (!stageImage) stageImage = blank;

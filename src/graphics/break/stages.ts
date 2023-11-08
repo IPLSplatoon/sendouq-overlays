@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import * as _ from "lodash"
 
 import blank from "../assets/blank.png";
+import counterStage from "../assets/counter-stage.png";
 import { getModeIcon } from "../helpers/modeIcon";
 
 export function initStages(){
@@ -88,8 +89,8 @@ function getStageHTML(stage: string, mode: string, size: number, winner: string 
     let modeIcon = getModeIcon(mode);
 
     const fontsize = size >= 330 ? 30 : 26;
-    let stagePath = assetPaths.value.stageImages[stage];
-    if (stagePath === undefined) stagePath = blank;
+    let stagePath = assetPaths.value.stageImages[stage]
+    if (stagePath === undefined) stagePath = counterStage;
     let winnerHTML = "";
     let background = `url(${stagePath})`
     let finishedClass = "";
