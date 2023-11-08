@@ -3,12 +3,8 @@ import { ActiveRound } from "schemas";
 import { gsap } from "gsap";
 import * as _ from "lodash"
 
-import SZ from "../assets/SZ.avif";
-import TC from "../assets/TC.avif";
-import RM from "../assets/RM.avif";
-import CB from "../assets/CB.avif";
-import counter from "../assets/Counter.avif"
 import blank from "../assets/blank.png";
+import { getModeIcon } from "../helpers/modeIcon";
 
 export function initStages(){
     const e = {
@@ -89,24 +85,7 @@ function setStages (element: HTMLElement, stages: ActiveRound["games"], teamANam
 }
 
 function getStageHTML(stage: string, mode: string, size: number, winner: string | null, getInnerHTML: boolean = false): string {
-    let modeIcon = blank;
-    switch(mode) {
-        case "Splat Zones":
-            modeIcon = SZ;
-            break;
-        case "Tower Control":
-            modeIcon = TC;
-            break;
-        case "Rainmaker":
-            modeIcon = RM;
-            break;
-        case "Clam Blitz":
-            modeIcon = CB;
-            break;
-        case "Unknown Mode":
-            modeIcon = counter;
-            break;
-    }
+    let modeIcon = getModeIcon(mode);
 
     const fontsize = size >= 330 ? 30 : 26;
     let stagePath = assetPaths.value.stageImages[stage];
@@ -142,20 +121,9 @@ function setNextStageTeamsScene(element: HTMLElement, games: ActiveRound["games"
         onComplete: function() {
             const nextGame = games.find(game => game.winner === "none");  
 
-            let modeIcon = blank;
-            switch(nextGame.mode) {
-                case "Splat Zones":
-                    modeIcon = SZ;
-                    break;
-                case "Tower Control":
-                    modeIcon = TC;
-                    break;
-                case "Rainmaker":
-                    modeIcon = RM;
-                    break;
-                case "Clam Blitz":
-                    modeIcon = CB;
-                    break;
+            let modeIcon = getModeIcon(nextGame.mode);
+            if (nextGame.stage === "Unknown Stage"){
+                modeIcon = blank;
             }
         
             let stageName = nextGame.stage;

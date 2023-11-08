@@ -63,7 +63,6 @@ export function initSceneSwitcher() {
 }   
 
 function mainOut(e) {
-    animateLoadingBarPT1();
     sceneSwitcherTL.to(e.main.sceneSwitch, {
         opacity: 0,
         duration: .75,
