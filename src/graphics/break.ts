@@ -2,13 +2,10 @@ import { LitElement, TemplateResult, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import 'fitted-text';
 import {initCasters, initLinks, initMainScene, initMusic, initNextMatch, initSceneSwitcher, initScore, initStages, initTeams, initTopBar} from './break/exports';
+import { getBottomBar, getTopBar } from './helpers/breakElements';
 
 //static assets
 import sendouQLogo from './assets/sendouqlogo.png'; 
-import topBarIcons from './assets/topbaricons.svg';
-import globeIcon from './assets/globe.svg';
-import micIcon from './assets/mic.svg';
-import musicIcon from './assets/music.svg';
 import iplStreamed from './assets/ipl-streamed.png';
 
 //styles
@@ -23,11 +20,11 @@ import './styles/break/stageScene.css';
 @customElement('nodecg-graphic')
 export class Break extends LitElement {
 
-    render() {
+    render(): TemplateResult {
         return html`
-            ${this.getTopBar()}
+            ${getTopBar()}
             ${this.getLoadingBar()}
-            ${this.getBottomBar()}
+            ${getBottomBar()}
             ${this.getMainScene()}
             ${this.getTeamsScene()}  
             ${this.getStageScene()}
@@ -35,14 +32,14 @@ export class Break extends LitElement {
     }
 
     firstUpdated() {
-        initLinks();
         initNextMatch();
         initMainScene();
         initSceneSwitcher();
-        initTopBar();
         initStages();
         initScore();
         initTeams();
+        initTopBar();
+        initLinks();
         initCasters();
         initMusic();
     }
@@ -51,48 +48,9 @@ export class Break extends LitElement {
         return this; // no shadow dom, allows styles to be applied to children
     }
 
-    private getTopBar(): TemplateResult {
-        return html`
-        <top-bar>
-            <div class="left">
-                <div class="text">sendou.ink</div>
-                <div class="divider">/</div>
-                <img class="text" src=${sendouQLogo}>
-                <div class="divider dynamic">/</div>
-                <div class="text dynamic" id="top-bar-stage"></div>
-                <div class="divider dynamic">/</div>
-                <div class="text dynamic" id="top-bar-game"></div>
-            </div>
-            <img class="right" src=${topBarIcons}>
-        </top-bar>
-        `
-    }
-
     private getLoadingBar(): TemplateResult {
         return html`
         <div id="loading-bar"></div>
-        `
-    }
-
-    private getBottomBar(): TemplateResult {
-        return html`
-        <bottom-bar>
-            ${this.getBottomBarCard(globeIcon, "links")}
-            ${this.getBottomBarCard(micIcon, "casters")}
-            ${this.getBottomBarCard(musicIcon, "music")}
-        </bottom-bar>
-        `
-    }
-
-    private getBottomBarCard(iconSrc: string, id: string): TemplateResult {
-        return html`
-        <div class="card" id="bottom-card-${id}">
-            <img class="icon" src="${iconSrc}">
-            <div class="text-wrapper">
-                <fitted-text class="title" max-width="335" id="${id}-title"></fitted-text>
-                <fitted-text class="subtitle" max-width="335" id="${id}-subtitle"></fitted-text>
-            </div>
-        </div>
         `
     }
 

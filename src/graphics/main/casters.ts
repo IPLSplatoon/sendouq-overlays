@@ -55,6 +55,12 @@ function showCastersBox(element: HTMLElement) {
         duration: 0.5,
         ease: "power2.out"
     })
+    .to(".watermark", {
+        y: -32,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.inOut"
+    }, "<")
     .fromTo(element.children, {
         opacity: 0,
         y: 100
@@ -75,10 +81,16 @@ function showCastersBox(element: HTMLElement) {
         },
         ease: "power2.in"
     }, "+=8")
+    .to(".watermark", {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.in"
+    }, "<")
     .to(element, {
         opacity: 0,
         height: 50,
         duration: 0.5,
         ease: "power2.in"
-    }, "-=0.2");
+    }, "-=0.2")
 }
