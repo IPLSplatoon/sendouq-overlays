@@ -44,7 +44,7 @@ export function initStages(){
                     winner = lastChanged.winner === "alpha" ? newVal.teamA.name : newVal.teamB.name;
                 }
 
-                changeSingleStage(changedGameElement, lastChanged.stage, lastChanged.mode, newVal.teamA.name, newVal.teamB.name, winner);
+                changeSingleStage(changedGameElement, lastChanged.stage, lastChanged.mode, winner);
                 
                 return;
             }
@@ -149,7 +149,7 @@ function setNextStageTeamsScene(element: HTMLElement, games: ActiveRound["games"
     }, "+=.1")
 }
 
-function changeSingleStage(element: HTMLElement, stage: string, mode: string, teamAName: string, teamBName: string, winner: string | null) {   
+function changeSingleStage(element: HTMLElement, stage: string, mode: string, winner: string | null) {   
     const tl = gsap.timeline();
     tl.to(element, {
         height: 300,
@@ -158,8 +158,15 @@ function changeSingleStage(element: HTMLElement, stage: string, mode: string, te
         ease: "power2.in",
         onComplete: function() {
             const size = parseInt(element.style.getPropertyValue("--width"));
-            element.innerHTML = getStageHTML(stage, mode, size, winner, true);
-            element.style.setProperty("--background", `url(${assetPaths.value.stageImages[stage]})`);
+            const stageName = stage === "Unknown Stage" ? "Counterpick" : stage;
+            element.innerHTML = getStageHTML(stageName, mode, size, winner, true);
+            
+            if (stage !== "Unknown Stage") {
+                element.style.setProperty("--background", `url(${assetPaths.value.stageImages[stage]})`);
+            } else {
+                element.style.setProperty("--background", `url(${counterStage})`);
+            }
+            
             if (winner !== null) {
                 element.classList.add("finished");
             } else {
