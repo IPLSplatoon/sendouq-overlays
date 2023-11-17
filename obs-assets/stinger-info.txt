@@ -1,0 +1,2 @@
+sendouq-stinger transitions on frame 90
+sendouq-replay-stinger transitions on frame 14
