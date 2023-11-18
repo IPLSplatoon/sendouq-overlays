@@ -45,8 +45,24 @@ export function initTopBar(){
             newVal.games.forEach(game => {
                 if (game.winner !== "none") gameNum++;
             });
-            let gameText = gameNum > newVal.games.length ? "Match Complete" : `Game ${gameNum}`;
-            e.game.innerText = gameText;
+
+            if (newVal.match.type === "PLAY_ALL"){
+                let gameText = gameNum > newVal.games.length ? "Match Complete" : `Game ${gameNum}`;
+                e.game.innerText = gameText;
+            } else {
+                let targetWins = Math.ceil(newVal.games.length / 2);
+                let teamAWins = 0;
+                let teamBWins = 0;
+                newVal.games.forEach(game => {
+                    if (game.winner === "alpha") teamAWins++;
+                    if (game.winner === "bravo") teamBWins++;
+                });
+                if (teamAWins >= targetWins || teamBWins >= targetWins) {
+                    e.game.innerText = "Match Complete";
+                } else {
+                    e.game.innerText = `Game ${gameNum}`;
+                }
+            }
         });
     });
 }

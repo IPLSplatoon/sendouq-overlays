@@ -15,16 +15,12 @@ export function initStages(){
 
     NodeCG.waitForReplicants(activeRound, assetPaths).then(() => {
         activeRound.on("change", (newVal: ActiveRound, oldVal: ActiveRound) => {
-            // console.log(JSON.parse(JSON.stringify(newVal)));
+            console.log(JSON.parse(JSON.stringify(newVal)));
 
             if (oldVal === undefined) {
                 setStages(e.stagesWrapper, newVal.games, newVal.teamA.name, newVal.teamB.name);
-                setNextStageTeamsScene(e.nextStage, newVal.games);
+                setNextStageTeamsScene(e.nextStage, newVal.games, newVal.match);
                 return;
-            }
-
-            if (!_.isEqual(newVal.games.find(game => game.winner === "none"), oldVal.games.find(game => game.winner === "none"))){
-                setNextStageTeamsScene(e.nextStage, newVal.games);
             }
 
             let numChanged = 0;
@@ -45,6 +41,7 @@ export function initStages(){
                 }
 
                 changeSingleStage(changedGameElement, lastChanged.stage, lastChanged.mode, winner);
+                setNextStageTeamsScene(e.nextStage, newVal.games, newVal.match);
                 
                 return;
             }
@@ -112,7 +109,7 @@ function getStageHTML(stage: string, mode: string, size: number, winner: string 
     `
 }
 
-function setNextStageTeamsScene(element: HTMLElement, games: ActiveRound["games"]){
+function setNextStageTeamsScene(element: HTMLElement, games: ActiveRound["games"], match: ActiveRound["match"]){
     const tl = gsap.timeline();
     tl.to(element, {
         opacity: 0,
@@ -120,7 +117,33 @@ function setNextStageTeamsScene(element: HTMLElement, games: ActiveRound["games"
         width: element.offsetWidth - 40,
         ease: "power2.in",
         onComplete: function() {
-            const nextGame = games.find(game => game.winner === "none");  
+            const nextGame = games.find(game => game.winner === "none");
+
+            let teamAScore = 0;
+            let teamBScore = 0;
+            games.forEach(game => {
+                if (game.winner === "alpha") teamAScore++;
+                if (game.winner === "bravo") teamBScore++;
+            });
+            let targetScore = Math.ceil(games.length / 2);
+            console.log(teamAScore, teamBScore, targetScore);
+
+            if (match.type === "PLAY_ALL") {
+                if (nextGame === undefined) {
+                    element.innerHTML = "<div>Match Complete</div>";
+                    return;
+                }
+            } else {
+                if (teamAScore === targetScore || teamBScore === targetScore) {
+                    console.log("match complete");  
+                    element.innerHTML = "<div>Match Complete</div>";
+                    return;
+                }
+                if (nextGame === undefined) {
+                    element.innerHTML = "<div>Match Complete</div>";
+                    return;
+                }
+            }
 
             let modeIcon = getModeIcon(nextGame.mode);
             if (nextGame.stage === "Unknown Stage"){
