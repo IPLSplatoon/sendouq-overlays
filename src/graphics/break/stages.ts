@@ -15,7 +15,7 @@ export function initStages(){
 
     NodeCG.waitForReplicants(activeRound, assetPaths).then(() => {
         activeRound.on("change", (newVal: ActiveRound, oldVal: ActiveRound) => {
-            console.log(JSON.parse(JSON.stringify(newVal)));
+            // console.log(JSON.parse(JSON.stringify(newVal)));
 
             if (oldVal === undefined) {
                 setStages(e.stagesWrapper, newVal.games, newVal.teamA.name, newVal.teamB.name);
@@ -126,7 +126,6 @@ function setNextStageTeamsScene(element: HTMLElement, games: ActiveRound["games"
                 if (game.winner === "bravo") teamBScore++;
             });
             let targetScore = Math.ceil(games.length / 2);
-            console.log(teamAScore, teamBScore, targetScore);
 
             if (match.type === "PLAY_ALL") {
                 if (nextGame === undefined) {
@@ -135,7 +134,6 @@ function setNextStageTeamsScene(element: HTMLElement, games: ActiveRound["games"
                 }
             } else {
                 if (teamAScore === targetScore || teamBScore === targetScore) {
-                    console.log("match complete");  
                     element.innerHTML = "<div>Match Complete</div>";
                     return;
                 }
