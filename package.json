@@ -20,7 +20,7 @@
     "nodecg-bundle"
   ],
   "nodecg": {
-    "compatibleRange": "^1.8.1",
+    "compatibleRange": "^1.8.0 || ^2.0.0",
     "graphics": [
       {
         "file": "break.html",
