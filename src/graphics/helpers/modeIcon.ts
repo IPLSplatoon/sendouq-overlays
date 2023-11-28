@@ -6,6 +6,10 @@ import counter from "../assets/Counter.avif"
 import blank from "../assets/blank.png";
 
 export function getModeIcon(mode: string): string { 
+    //sendouq season 1 finale is zones only, so hardcoding blank icons
+    //ideally don't pull this into master
+    return blank;
+
     switch(mode) {
         case "Splat Zones":
             return SZ;
