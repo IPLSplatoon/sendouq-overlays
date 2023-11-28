@@ -99,22 +99,13 @@ function getStageElem(stage: string, mode: string): string {
     let modeAsset = getModeIcon(mode);
 
     let stageImage = assetPaths.value.stageImages[stage];
-    if (!stageImage) 
-    {
-        return `
-        <div class="stage" style="
-            background-image: linear-gradient(0deg, rgba(34, 28, 74, 0.70) 0%, rgba(34, 28, 74, 0.70) 100%);
-        ">
-            <img class="mode" src="${modeAsset}">
-        </div> 
-        `
-    } else {
-        return `
-        <div class="stage" style="
-            background-image: linear-gradient(0deg, rgba(34, 28, 74, 0.30) 0%, rgba(34, 28, 74, 0) 100%), url(${stageImage});
-        ">
-            <img class="mode" src="${modeAsset}">
-        </div> 
-        `
-    }
+    if (!stageImage) stageImage = blank;
+
+    return `
+    <div class="stage" style="
+        background-image: linear-gradient(0deg, rgba(34, 28, 74, 0.70) 0%, rgba(34, 28, 74, 0.70) 100%), url(${stageImage});
+    ">
+        <img class="mode" src="${modeAsset}">
+    </div> 
+    `
 }
