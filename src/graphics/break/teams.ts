@@ -9,19 +9,21 @@ export function initTeams() {
             card: document.getElementById("team-card-left") as HTMLElement,
             name: document.getElementById("team-left-name") as HTMLElement,
             stageName: document.getElementById("stage-team-left-name") as HTMLElement,
-            playersWrapper: document.getElementById("team-left-players") as HTMLElement 
+            playersWrapper: document.getElementById("team-left-players") as HTMLElement,
+            image: document.getElementById("team-left-icon") as HTMLImageElement
         },
         b: {
             card: document.getElementById("team-card-right") as HTMLElement,
             name: document.getElementById("team-right-name") as HTMLElement,
             stageName: document.getElementById("stage-team-right-name") as HTMLElement,
-            playersWrapper: document.getElementById("team-right-players") as HTMLElement 
+            playersWrapper: document.getElementById("team-right-players") as HTMLElement,
+            image: document.getElementById("team-right-icon") as HTMLImageElement
         }
     }
 
     NodeCG.waitForReplicants(activeRound).then(() => {
         activeRound.on("change", (newVal: ActiveRound, oldVal: ActiveRound) => {
-            // console.log(JSON.parse(JSON.stringify(newVal.teamA.players)));
+            console.log(JSON.parse(JSON.stringify(newVal.teamA)));
             if (oldVal === undefined) {
                 setTeams(e, newVal.teamA, newVal.teamB);
                 return;
@@ -51,6 +53,20 @@ function setTeams(e, teamA: ActiveRound["teamA"], teamB: ActiveRound["teamB"]) {
 
             e.a.playersWrapper.innerHTML = getPlayersHTML(teamA.players);
             e.b.playersWrapper.innerHTML = getPlayersHTML(teamB.players);
+
+            if (teamA.hasOwnProperty("logoUrl")) {
+                e.a.image.src = teamA.logoUrl;
+                e.a.image.style.opacity = "1";
+            } else {
+                e.a.image.style.opacity = "0";
+            }
+
+            if (teamB.hasOwnProperty("logoUrl")) {
+                e.b.image.src = teamB.logoUrl;
+                e.b.image.style.opacity = "1";
+            } else {
+                e.b.image.style.opacity = "0";
+            }
         }
     })
     .to([e.a.card, e.b.card], {

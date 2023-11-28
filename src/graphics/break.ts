@@ -145,6 +145,10 @@ export class Break extends LitElement {
                 <fitted-text id="team-${side}-name" max-width="476" text="Team Name"></fitted-text>
             </div>
             <div class="players" id="team-${side}-players"></div>
+            <div class="icon-wrapper">
+                <img class="icon" id="team-${side}-icon">
+            </div>
+        </div>
         `;
     }
 
