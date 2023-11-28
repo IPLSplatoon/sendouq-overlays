@@ -83,8 +83,6 @@ function setStages (element: HTMLElement, stages: ActiveRound["games"], teamANam
 }
 
 function getStageHTML(stage: string, mode: string, size: number, winner: string | null, getInnerHTML: boolean = false): string {
-    let modeIcon = getModeIcon(mode);
-
     const fontsize = size >= 330 ? 30 : 26;
     let stagePath = assetPaths.value.stageImages[stage]
     if (stagePath === undefined) stagePath = counterStage;
@@ -101,7 +99,6 @@ function getStageHTML(stage: string, mode: string, size: number, winner: string 
     return `
     ${getInnerHTML ? "" : `<div class="stage scene-switch ${finishedClass}" style="--width: ${size}px; --background: ${background}">`}
         <div class="info-wrapper" style="font-size: ${fontsize}px">
-            <img class="icon" src="${modeIcon}">
             <div class="name">${stage}</div>   
         </div>
         ${winnerHTML}
@@ -149,15 +146,9 @@ function setNextStageTeamsScene(element: HTMLElement, games: ActiveRound["games"
             }
         
             let stageName = nextGame.stage;
-            let modeHTML = `<img src=${modeIcon}>`;
-            if (nextGame.stage === "Unknown Stage"){
-                stageName = "Counterpick";
-                modeHTML = "";
-            }
         
             element.innerHTML = `
             <span class='next'>Next:</span>
-            ${modeHTML}
             <div>${stageName}</div>
             `
         }
