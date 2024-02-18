@@ -69,7 +69,7 @@ function setStages (element: HTMLElement, stages: ActiveRound["games"], teamANam
                     winner = stage.winner === "alpha" ? teamAName : teamBName;
                 }
                 
-                const stageName = stage.stage === "Unknown Stage" ? "Counterpick" : stage.stage;
+                const stageName = stage.stage === "Unknown Stage" ? "" : stage.stage;
         
                 element.innerHTML += getStageHTML(stageName, stage.mode, size, winner);
             });
@@ -170,7 +170,7 @@ function changeSingleStage(element: HTMLElement, stage: string, mode: string, wi
         ease: "power2.in",
         onComplete: function() {
             const size = parseInt(element.style.getPropertyValue("--width"));
-            const stageName = stage === "Unknown Stage" ? "Counterpick" : stage;
+            const stageName = stage === "Unknown Stage" ? "" : stage;
             element.innerHTML = getStageHTML(stageName, mode, size, winner, true);
             
             if (stage !== "Unknown Stage") {
