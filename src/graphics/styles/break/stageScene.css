@@ -89,6 +89,7 @@ stage-scene > .stages-wrapper > .stage > .info-wrapper {
     font-size: 30px;
     line-height: 1.05em;
     height: 60px;
+    text-wrap: balance;
 }
 
 stage-scene > .stages-wrapper > .stage > .info-wrapper > .icon {
