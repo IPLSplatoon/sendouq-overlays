@@ -69,7 +69,7 @@ function setStages (element: HTMLElement, stages: ActiveRound["games"], teamANam
                     winner = stage.winner === "alpha" ? teamAName : teamBName;
                 }
                 
-                const stageName = stage.stage === "Unknown Stage" ? "" : stage.stage;
+                const stageName = stage.stage === "Unknown Stage" || stage.stage === "Counterpick" ? "" : stage.stage;
         
                 element.innerHTML += getStageHTML(stageName, stage.mode, size, winner);
             });
@@ -141,7 +141,7 @@ function setNextStageTeamsScene(element: HTMLElement, games: ActiveRound["games"
             }
 
             let modeIcon = getModeIcon(nextGame.mode);
-            if (nextGame.stage === "Unknown Stage"){
+            if (nextGame.stage === "Unknown Stage" || nextGame.stage === "Counterpick"){
                 modeIcon = blank;
             }
         
@@ -170,10 +170,10 @@ function changeSingleStage(element: HTMLElement, stage: string, mode: string, wi
         ease: "power2.in",
         onComplete: function() {
             const size = parseInt(element.style.getPropertyValue("--width"));
-            const stageName = stage === "Unknown Stage" ? "" : stage;
+            const stageName = stage === "Unknown Stage" || stage === "Counterpick" ? "" : stage;
             element.innerHTML = getStageHTML(stageName, mode, size, winner, true);
             
-            if (stage !== "Unknown Stage") {
+            if (stage !== "Unknown Stage" && stage !== "Counterpick") {
                 element.style.setProperty("--background", `url(${assetPaths.value.stageImages[stage]})`);
             } else {
                 element.style.setProperty("--background", `url(${counterStage})`);

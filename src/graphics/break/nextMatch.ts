@@ -63,7 +63,7 @@ function changeNextMatch(round: NextRound, e, changeWidth: boolean) {
         onComplete: function() {
             e.name.text = round.round.name;
             e.teams.text = `${limitString(round.teamA.name)} VS ${limitString(round.teamB.name)}`;
-            setNextStages(round.games, e.stageWrapper);
+            // setNextStages(round.games, e.stageWrapper);
         }
     })
     
