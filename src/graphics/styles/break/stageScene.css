@@ -113,3 +113,10 @@ stage-scene > .stages-wrapper > .stage > .winner {
     overflow-wrap: break-word;
     text-align: center;
 }
+
+stage-scene > .stage-pick-info {
+    padding: .5rem 1rem;
+    margin-top: 20px;
+    font-size: 20px;
+    color: #ACACD2;
+}

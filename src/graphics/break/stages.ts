@@ -146,6 +146,9 @@ function setNextStageTeamsScene(element: HTMLElement, games: ActiveRound["games"
             }
         
             let stageName = nextGame.stage;
+            if (nextGame.stage === "Unknown Stage" || nextGame.stage === "Counterpick") {
+                stageName = "Waiting for stage...";
+            }
         
             element.innerHTML = `
             <span class='next'>Next:</span>

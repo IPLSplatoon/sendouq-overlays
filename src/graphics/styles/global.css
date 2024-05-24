@@ -33,4 +33,5 @@ nodecg-graphic {
 
 .container.pink {
     background: var(--container-pink);
+    color: #FFC6DE;
 }

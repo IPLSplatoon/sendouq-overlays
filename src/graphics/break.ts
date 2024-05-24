@@ -112,7 +112,7 @@ export class Break extends LitElement {
                     <div class="container match">
                         <fitted-text class="name" max-width="800" id="next-match-name"></fitted-text>
                         <fitted-text class="teams" max-width="800" id="next-match-teams"></fitted-text>
-                        <div class="stage-wrapper" id="next-match-stages"></div>
+                        <!-- <div class="stage-wrapper" id="next-match-stages"></div> -->
                     </div>
                 </div>
             </div>
@@ -160,6 +160,7 @@ export class Break extends LitElement {
                 ${this.getStageTeamCard("right")}
             </div>
             <div class="stages-wrapper" id="stages-wrapper"></div>
+            <div class="stage-pick-info container scene-switch">Teams create a map pool before the event. Stages are selected by an algorithm that chooses from both team's map pools.</div>
         </stage-scene>
         `;
     }
