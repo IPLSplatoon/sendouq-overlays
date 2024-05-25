@@ -33,6 +33,7 @@ top-bar > .left >  .divider {
     font-weight: 700;
     margin: 0 20px;
     transform: translateY(-.06em);
+    color: #5b5a66;
 }
 
 top-bar > .right {

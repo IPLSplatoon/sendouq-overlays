@@ -62,11 +62,11 @@ export class Break extends LitElement {
         <top-bar>
             <div class="left">
                 <div class="text">sendou.ink</div>
-                <div class="divider">/</div>
+                <div class="divider">»</div>
                 <img class="text" src=${sendouQLogo}>
-                <div class="divider dynamic">/</div>
+                <div class="divider dynamic">»</div>
                 <div class="text dynamic" id="top-bar-stage"></div>
-                <div class="divider dynamic">/</div>
+                <div class="divider dynamic">»</div>
                 <div class="text dynamic" id="top-bar-game"></div>
             </div>
             <img class="right" src=${topBarIcons}>
