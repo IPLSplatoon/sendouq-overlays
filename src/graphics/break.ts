@@ -160,7 +160,6 @@ export class Break extends LitElement {
                 ${this.getStageTeamCard("right")}
             </div>
             <div class="stages-wrapper" id="stages-wrapper"></div>
-            <div class="stage-pick-info container scene-switch">Teams create a map pool before the event. Stages are selected by an algorithm that chooses from both team's map pools.</div>
         </stage-scene>
         `;
     }
