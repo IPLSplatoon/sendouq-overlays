@@ -202,12 +202,18 @@ function bracketOut(e, dir: "left" | "right") {
 }
 
 function bracketIn(e, dir: "left" | "right") {
-    sceneSwitcherTL.add(() => {
-        gsap.set(e.bracket.wrapper, { opacity: 1, x: 0 });
-        bracketRenderer.beforeReveal();
-        void bracketRenderer.reveal();
-        animateLoadingBarPT2();
-    });
+    sceneSwitcherTL.set(e.bracket.wrapper, { opacity: 1, x: 0, x: dir === 'left' ? -150 : 150 })
+    .to(e.bracket.wrapper, {
+        opacity: 1,
+        duration: .75,
+        x: 0,
+        onStart: () => {
+            bracketRenderer.beforeReveal();
+            void bracketRenderer.reveal();
+            animateLoadingBarPT2();
+        },
+        ease: 'power2.out'
+    })
 }
 
 function castersOut(e) {
