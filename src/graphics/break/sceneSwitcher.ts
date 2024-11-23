@@ -1,6 +1,7 @@
 import { activeBreakScene } from "../helpers/replicants";
 import { ActiveBreakScene } from "schemas";
 import { gsap } from "gsap";
+import { bracketRenderer } from './bracket';
 
 const sceneSwitcherTL = gsap.timeline();
 const loadingTL = gsap.timeline();
@@ -20,25 +21,26 @@ export function initSceneSwitcher() {
                 stages: {
                     wrapper: document.querySelector("stage-scene") as HTMLElement,
                     sceneSwitch: document.querySelector("stage-scene").querySelectorAll(".scene-switch") as NodeListOf<HTMLElement>,
+                },
+                bracket: {
+                    wrapper: document.querySelector('bracket-scene') as HTMLElement,
+                    sceneSwitch: document.querySelectorAll('bracket-scene > .scene-switch') as NodeListOf<HTMLElement>
                 }
             }
 
             if (oldVal === undefined) {
-                switch(newVal) {
-                    case "main":
-                        e.teams.wrapper.style.display = "none";
-                        e.stages.wrapper.style.display = "none";    
-                        break;
-                    case "teams":
-                        e.main.wrapper.style.display = "none";
-                        e.stages.wrapper.style.display = "none";
-                        break;
-                    case "stages":
-                        e.main.wrapper.style.display = "none";
-                        e.teams.wrapper.style.display = "none";
-                        break;
+                if (newVal !== 'main') {
+                    e.main.wrapper.style.display = 'none';
                 }
-                return;
+                if (newVal !== 'teams') {
+                    e.teams.wrapper.style.display = 'none';
+                }
+                if (newVal !== 'stages') {
+                    e.stages.wrapper.style.display = 'none';
+                }
+                if (newVal !== 'bracket') {
+                    e.bracket.wrapper.style.opacity = '0';
+                }
             }
 
             if (newVal === oldVal) return;
@@ -49,6 +51,8 @@ export function initSceneSwitcher() {
                 teamsOut(e, newVal === "main" ? "left" : "right");
             } else if (oldVal === "stages") {
                 stagesOut(e);
+            } else if (oldVal === 'bracket') {
+                bracketOut(e);
             }
 
             if (newVal === "main") {
@@ -57,6 +61,8 @@ export function initSceneSwitcher() {
                 teamsIn(e, oldVal === "main" ? "right" : "left");
             } else if (newVal === "stages") {
                 stagesIn(e);
+            } else if (newVal === 'bracket') {
+                bracketIn(e);
             }
         });
     });
@@ -171,6 +177,25 @@ function stagesIn(e) {
         stagger: .075,
         onStart: animateLoadingBarPT2,
         ease: "power2.out"
+    });
+}
+
+function bracketOut(e) {
+    sceneSwitcherTL.to(e.bracket.wrapper, {
+        opacity: 0,
+        duration: .35,
+        onStart: animateLoadingBarPT1
+    });
+}
+
+function bracketIn(e) {
+    sceneSwitcherTL.to(e.bracket.wrapper, {
+        opacity: 1,
+        onStart: () => {
+            bracketRenderer.beforeReveal();
+            animateLoadingBarPT2();
+        },
+        onComplete: () => bracketRenderer.reveal()
     });
 }
 

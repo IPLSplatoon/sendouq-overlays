@@ -1,5 +1,5 @@
 import { gsap } from "gsap";
-import { activeBreakScene, activeRound } from "../helpers/replicants";
+import { activeBreakScene, activeRound, bracketData } from '../helpers/replicants';
 import { ActiveBreakScene, ActiveRound } from "schemas";
 
 const topBarTL = gsap.timeline();
@@ -9,19 +9,44 @@ export function initTopBar(){
         topBar: document.querySelector("top-bar") as HTMLElement,
         dynamic: document.querySelector("top-bar").querySelectorAll(".dynamic") as NodeListOf<HTMLElement>,
         stage: document.getElementById("top-bar-stage") as HTMLElement, 
-        game: document.getElementById("top-bar-game") as HTMLElement,   
+        game: document.getElementById("top-bar-game") as HTMLElement,
+        bracketDynamic: document.querySelectorAll('top-bar .bracket-dynamic') as NodeListOf<HTMLElement>,
+        bracketName: document.getElementById('top-bar-bracket-name') as HTMLElement,
+        bracketStageName: document.getElementById('top-bar-bracket-stage-name') as HTMLElement,
+        bracketStageNameDivider: document.getElementById('top-bar-bracket-stage-name-divider') as HTMLElement
     }
-    
+
+    bracketData.on('change', newValue => {
+        if (newValue != null) {
+            e.bracketName.innerText = newValue.name;
+            const bracketStageName = newValue.matchGroups.length === 1 ? newValue.matchGroups[0].name : null;
+            if (bracketStageName != null && newValue.name !== bracketStageName) {
+                e.bracketStageName.innerText = bracketStageName;
+                e.bracketStageNameDivider.style.display = 'block';
+            } else {
+                e.bracketStageName.innerText = '';
+                e.bracketStageNameDivider.style.display = 'none';
+            }
+        }
+    });
+
     NodeCG.waitForReplicants(activeBreakScene, activeRound).then(() => {
         activeBreakScene.on("change", (newVal: ActiveBreakScene, oldVal: ActiveBreakScene) => {
             if (oldVal === undefined) {
                 switch(newVal) {
                     case "main":
                         textOut(e.dynamic);
+                        textOut(e.bracketDynamic);
+                        break;
+                    case "bracket":
+                        textOut(e.dynamic);
+                        textIn(e.bracketDynamic);
                         break;
                     case "teams":
                     case "stages":
+                    case "casters":
                         textIn(e.dynamic);
+                        textOut(e.bracketDynamic);
                         break;
                 }
                 return;
@@ -29,12 +54,20 @@ export function initTopBar(){
 
             if (newVal === oldVal) return;
 
-            if (oldVal === "main" && (newVal === "teams" || newVal === "stages")) {
+            if (oldVal === "bracket") {
+                textOut(e.bracketDynamic);
+            }
+
+            if ((oldVal === "main" || oldVal === "bracket") && (newVal === "teams" || newVal === "stages" || newVal === "casters")) {
                 textIn(e.dynamic);
             }
 
-            if ((oldVal === "teams" || oldVal === "stages") && newVal === "main") {
+            if ((oldVal === "teams" || oldVal === "stages" || oldVal === "casters") && (newVal === "main" || newVal === "bracket")) {
                 textOut(e.dynamic);
+            }
+
+            if (newVal === "bracket") {
+                textIn(e.bracketDynamic);
             }
         });
 

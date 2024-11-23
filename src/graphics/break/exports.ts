@@ -8,3 +8,4 @@ export { initScore } from './score'
 export { initTeams } from './teams'
 export { initCasters } from './casters'
 export { initMusic } from './music'
+export { initBracket } from './bracket';

@@ -1,7 +1,7 @@
 import { LitElement, TemplateResult, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import 'fitted-text';
-import {initCasters, initLinks, initMainScene, initMusic, initNextMatch, initSceneSwitcher, initScore, initStages, initTeams, initTopBar} from './break/exports';
+import {initCasters, initLinks, initMainScene, initMusic, initNextMatch, initSceneSwitcher, initScore, initStages, initTeams, initTopBar, initBracket} from './break/exports';
 
 //static assets
 import sendouQLogo from './assets/sendouqlogo.png'; 
@@ -12,6 +12,7 @@ import micIcon from './assets/mic.svg';
 import musicIcon from './assets/music.svg';
 
 //styles
+import '@tourneyview/renderer/css/base.css';
 import './styles/global.css';
 import './styles/break/break.css';
 import './styles/break/topBar.css';
@@ -19,6 +20,7 @@ import './styles/break/bottomBar.css';
 import './styles/break/mainScene.css';
 import './styles/break/teamsScene.css';
 import './styles/break/stageScene.css';
+import './styles/break/bracket.css';
 
 @customElement('nodecg-graphic')
 export class Break extends LitElement {
@@ -31,6 +33,7 @@ export class Break extends LitElement {
             ${this.getMainScene()}
             ${this.getTeamsScene()}  
             ${this.getStageScene()}
+            ${this.getBracketScene()}
         `;
     }
 
@@ -45,6 +48,7 @@ export class Break extends LitElement {
         initLinks();
         initCasters();
         initMusic();
+        initBracket();
     }
 
     createRenderRoot(): Break {
@@ -64,10 +68,20 @@ export class Break extends LitElement {
                 <div class="text">sendou.ink</div>
                 <div class="divider">/</div>
                 <img class="text" src=${sendouQLogo}>
-                <div class="divider dynamic">/</div>
-                <div class="text dynamic" id="top-bar-stage"></div>
-                <div class="divider dynamic">/</div>
-                <div class="text dynamic" id="top-bar-game"></div>
+                
+                <div class="dynamic-wrapper">
+                    <div class="divider dynamic">/</div>
+                    <div class="text dynamic" id="top-bar-stage"></div>
+                    <div class="divider dynamic">/</div>
+                    <div class="text dynamic" id="top-bar-game"></div>
+                </div>
+                
+                <div class="dynamic-wrapper">
+                    <div class="divider bracket-dynamic">/</div>
+                    <div class="text bracket-dynamic" id="top-bar-bracket-name"></div>
+                    <div class="divider bracket-dynamic" id="top-bar-bracket-stage-name-divider">/</div>
+                    <div class="text bracket-dynamic" id="top-bar-bracket-stage-name"></div>
+                </div>
             </div>
             <img class="right" src=${topBarIcons}>
         </top-bar>
@@ -173,5 +187,13 @@ export class Break extends LitElement {
             <div class="score container pink" id="stage-team-${side}-score">0</div>
         </div>
         `
+    }
+
+    private getBracketScene(): TemplateResult {
+        return html`
+        <bracket-scene class="scene">
+            
+        </bracket-scene>
+        `;
     }
 }

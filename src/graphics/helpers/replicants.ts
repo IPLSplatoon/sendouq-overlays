@@ -1,4 +1,5 @@
 import { MusicShown, NowPlaying, Casters, ActiveRound, PredictionStore, ActiveBreakScene, MainFlavorText, NextRoundStartTime, ScoreboardData, NextRound, AssetPaths, TournamentData } from 'schemas';
+import { Bracket } from '@tourneyview/common';
 
 const DASHBOARD_BUNDLE_NAME = 'ipl-overlay-controls';
 
@@ -14,3 +15,4 @@ export const scoreboardData = nodecg.Replicant<ScoreboardData>('scoreboardData',
 export const nextRound = nodecg.Replicant<NextRound>('nextRound', DASHBOARD_BUNDLE_NAME);
 export const assetPaths = nodecg.Replicant<AssetPaths>('assetPaths', DASHBOARD_BUNDLE_NAME);
 export const tournamentData = nodecg.Replicant<TournamentData>('tournamentData', DASHBOARD_BUNDLE_NAME);
+export const bracketData = nodecg.Replicant<Bracket | undefined>('bracketData', DASHBOARD_BUNDLE_NAME);

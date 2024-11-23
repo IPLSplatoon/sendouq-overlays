@@ -1,0 +1,61 @@
+bracket-scene > div {
+    width: 100%;
+    height: 850px;
+}
+
+.elimination-renderer .round-label {
+    background-color: #352B62;
+    border-radius: 10px;
+    padding: 4px 0;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.elimination-renderer .match-cell {
+    background-color: #221B48;
+    border-radius: 10px;
+    grid-template-rows: 1fr 2px 1fr;
+}
+
+.elimination-renderer .match-cell .separator {
+    grid-column: span 2;
+    height: 2px;
+    width: 95%;
+    margin-left: 2.5%;
+    background-color: rgb(169 138 255 / 10%);
+}
+
+.elimination-renderer .match-cell__team-name {
+    color: rgb(215 214 255 / 80%);
+    margin-left: 8px;
+    font-size: 1.2em;
+}
+
+.elimination-renderer .match-cell__score {
+    color: rgb(215 214 255 / 80%);
+    font-size: 1.35em;
+}
+
+.elimination-renderer .match-cell-wrapper.top-team-winner .match-cell__top-team-name,
+.elimination-renderer .match-cell-wrapper.top-team-winner .match-cell__top-score {
+    color: rgb(225, 222, 222);
+}
+
+.elimination-renderer .match-cell-wrapper.bottom-team-winner .match-cell__bottom-team-name,
+.elimination-renderer .match-cell-wrapper.bottom-team-winner .match-cell__bottom-score {
+    color: rgb(225, 222, 222);
+}
+
+.elimination-renderer .bracket-link {
+    stroke: #191435;
+    stroke-width: 2px;
+}
+
+.round-robin-renderer .round-robin-grid-item.type-match {
+    background-color: #a98aff30;
+}
+
+.round-robin-renderer .round-robin-grid-item.type-blank-no-match {
+    background-color: transparent;
+    backdrop-filter: brightness(.75);
+}

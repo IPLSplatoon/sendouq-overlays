@@ -16,9 +16,19 @@ top-bar {
 top-bar > .left {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
-top-bar > .left > .text {
+top-bar > .left .dynamic-wrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    right: 0;
+    transform: translateX(100%);
+}
+
+top-bar > .left .text {
     font-size: 24px;
     font-weight: 600;
 }
@@ -28,7 +38,7 @@ top-bar > .left >  img.text {
     width: auto;
 }
 
-top-bar > .left >  .divider {
+top-bar > .left .divider {
     font-size: 32px;
     font-weight: 700;
     margin: 0 20px;

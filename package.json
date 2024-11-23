@@ -32,11 +32,23 @@
         "width": 1920,
         "height": 1080
       }
+    ],
+    "dashboardPanels": [
+      {
+        "name": "scenes",
+        "title": "SendouQ Scenes",
+        "width": 2,
+        "file": "scenes.html",
+        "workspace": "ipl",
+        "headerColor": "#6B5374"
+      }
     ]
   },
   "repository": "https://github.com/nodecg/nodecg.git",
   "private": true,
   "dependencies": {
+    "@tourneyview/common": "^0.6.0",
+    "@tourneyview/renderer": "^0.6.0",
     "fitted-text": "^2.0.5",
     "gsap": "^3.12.2",
     "lit": "^3.0.2",
