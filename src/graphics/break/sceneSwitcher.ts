@@ -23,7 +23,7 @@ export function initSceneSwitcher() {
                     sceneSwitch: document.querySelector("stage-scene").querySelectorAll(".scene-switch") as NodeListOf<HTMLElement>,
                 },
                 bracket: {
-                    wrapper: document.querySelector('bracket-scene') as HTMLElement
+                    wrapper: document.querySelector('.bracket-renderer') as HTMLElement
                 },
                 casters: {
                     wrapper: document.querySelector('caster-scene') as HTMLElement
@@ -52,12 +52,12 @@ export function initSceneSwitcher() {
 
             if (oldVal === "main") {
                 mainOut(e);
-            } else if (oldVal === "teams") {    
+            } else if (oldVal === "teams") {
                 teamsOut(e, newVal === "main" ? "left" : "right");
             } else if (oldVal === "stages") {
                 stagesOut(e, (newVal === 'casters' || newVal === 'bracket') ? 'left' : 'right');
             } else if (oldVal === 'bracket') {
-                bracketOut(e);
+                bracketOut(e, newVal === 'casters' ? 'left' : 'right');
             } else if (oldVal === 'casters') {
                 castersOut(e);
             }
@@ -69,13 +69,13 @@ export function initSceneSwitcher() {
             } else if (newVal === "stages") {
                 stagesIn(e, (oldVal === 'casters' || oldVal === 'bracket') ? 'left' : 'right');
             } else if (newVal === 'bracket') {
-                bracketIn(e);
+                bracketIn(e, oldVal === 'casters' ? 'left' : 'right');
             } else if (newVal === 'casters') {
                 castersIn(e);
             }
         });
     });
-}   
+}
 
 function mainOut(e) {
     sceneSwitcherTL.to(e.main.sceneSwitch, {
@@ -135,7 +135,7 @@ function teamsIn(e, dir: "left" | "right") {
     sceneSwitcherTL.set(e.teams.wrapper, {
         display: "flex",
     })
-    .set(e.teams.sceneSwitch, { 
+    .set(e.teams.sceneSwitch, {
         opacity: 0
     })
     .fromTo(e.teams.sceneSwitch, {
@@ -191,23 +191,22 @@ function stagesIn(e, dir: "left" | "right") {
     });
 }
 
-function bracketOut(e) {
+function bracketOut(e, dir: "left" | "right") {
     sceneSwitcherTL.to(e.bracket.wrapper, {
         opacity: 0,
-        duration: .35,
-        onStart: animateLoadingBarPT1
+        duration: .75,
+        x: dir === 'left' ? -150 : 150,
+        onStart: animateLoadingBarPT1,
+        ease: "power2.in"
     });
 }
 
-function bracketIn(e) {
-    sceneSwitcherTL.to(e.bracket.wrapper, {
-        opacity: 1,
-        duration: .35,
-        onStart: () => {
-            bracketRenderer.beforeReveal();
-            animateLoadingBarPT2();
-        },
-        onComplete: () => bracketRenderer.reveal()
+function bracketIn(e, dir: "left" | "right") {
+    sceneSwitcherTL.add(() => {
+        gsap.set(e.bracket.wrapper, { opacity: 1, x: 0 });
+        bracketRenderer.beforeReveal();
+        void bracketRenderer.reveal();
+        animateLoadingBarPT2();
     });
 }
 
