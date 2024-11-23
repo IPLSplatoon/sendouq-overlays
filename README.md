@@ -2,7 +2,7 @@
 Broadcast overlays for the SendouQ related events, specifically it's season finale tournaments. These overlays are copyrighted and this repo serves as a reference to those who want to make their own overlays (don't broadcast these without permission!)
 
 ## Setup
-- Set up [`ipl-overlay-controls`](https://github.com/inkfarer/ipl-overlay-controls) on the `brackets` branch (Required as of 2024-11-23. I don't have a written guide for this, sorry!)
+- Set up [`ipl-overlay-controls`](https://github.com/inkfarer/ipl-overlay-controls) on the `custom-break-scenes` branch (Required as of 2024-11-23. I don't have a written guide for this, sorry!)
 - Clone the `sendouq-overlays` repository by going to the bundles folder in your nodecg install and using the following command: `git clone https://github.com/IPLSplatoon/sendouq-overlays.git`
 - Navigate to the newly created `sendouq-overlays` folder and run the command `npm i` then `npm run build` to build the project for production use.
 - Other assets needed for the stream are found in the `obs-assets` folder.
