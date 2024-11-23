@@ -4,3 +4,7 @@ export function limitString(str: string, limit: number = 30): string {
     }
     return str;
 }
+
+export function isBlank(value?: string): boolean {
+    return typeof value !== 'string' || value.trim() === '';
+}

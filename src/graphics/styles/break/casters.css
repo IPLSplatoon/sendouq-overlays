@@ -1,0 +1,78 @@
+#caster-layout {
+    width: 1600px;
+    height: 750px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.caster-wrapper {
+    background-color: #221B48;
+    width: var(--caster-width);
+    margin: 16px;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 16px;
+}
+
+.caster-visual-wrapper {
+    display: contents;
+}
+
+.caster-nametag {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 5px;
+    position: absolute;
+    bottom: -15px;
+    right: -10px;
+    z-index: 2;
+    text-align: right;
+    background-color: #352B62;
+    border-radius: 12px;
+    padding: 4px 12px 8px;
+}
+
+.caster-pronouns {
+    color: #FFC6DE
+}
+
+.caster-name {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.caster-twitter {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.caster-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 999px;
+}
+
+.caster-image-placeholder {
+    width: 150px;
+    opacity: 0.75;
+}
+
+.video-loader-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+
+    > iframe {
+        border-width: 0;
+        width: 100%;
+        height: 100%;
+    }
+}

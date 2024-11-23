@@ -21,6 +21,7 @@ import './styles/break/mainScene.css';
 import './styles/break/teamsScene.css';
 import './styles/break/stageScene.css';
 import './styles/break/bracket.css';
+import './styles/break/casters.css';
 
 @customElement('nodecg-graphic')
 export class Break extends LitElement {
@@ -34,6 +35,7 @@ export class Break extends LitElement {
             ${this.getTeamsScene()}  
             ${this.getStageScene()}
             ${this.getBracketScene()}
+            ${this.getCasterScene()}
         `;
     }
 
@@ -194,6 +196,14 @@ export class Break extends LitElement {
         <bracket-scene class="scene">
             
         </bracket-scene>
+        `;
+    }
+
+    private getCasterScene(): TemplateResult {
+        return html`
+        <caster-scene class="scene">
+            <div id="caster-layout" />
+        </caster-scene>
         `;
     }
 }
