@@ -202,7 +202,7 @@ function bracketOut(e, dir: "left" | "right") {
 }
 
 function bracketIn(e, dir: "left" | "right") {
-    sceneSwitcherTL.set(e.bracket.wrapper, { opacity: 1, x: 0, x: dir === 'left' ? -150 : 150 })
+    sceneSwitcherTL.set(e.bracket.wrapper, { opacity: 1, x: dir === 'left' ? -150 : 150 })
     .to(e.bracket.wrapper, {
         opacity: 1,
         duration: .75,
