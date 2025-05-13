@@ -17,6 +17,14 @@ bracket-scene > div {
     grid-template-rows: 1fr 2px 1fr;
 }
 
+.elimination-renderer .match-cell.has-third-place-match-label {
+    grid-template-rows: auto 1fr 2px 1fr !important;
+}
+
+.elimination-renderer .match-cell__third-place-match-label {
+    background-color: #352B62 !important;
+}
+
 .elimination-renderer .match-cell .separator {
     grid-column: span 2;
     height: 2px;
