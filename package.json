@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Broadcast overlays for the SendouQ season finale events.",
   "homepage": "",
-  "type": "module",
   "compatibleDashboardVersion": "^4.5.0",
   "compatibleGameVersions": [
     "SPLATOON_3"

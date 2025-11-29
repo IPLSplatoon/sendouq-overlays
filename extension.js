@@ -1,4 +1,4 @@
-export default (nodecg) => {
+module.exports = function (nodecg) {
     nodecg.extensions['ipl-overlay-controls'].bundleConfigDeclarationService.declareCustomScenes(nodecg.bundleName, [
         {
             value: 'casters',
@@ -13,4 +13,4 @@ export default (nodecg) => {
             }
         }
     ]);
-};
+}
